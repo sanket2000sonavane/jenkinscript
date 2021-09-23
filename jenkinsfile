@@ -16,7 +16,7 @@ pipeline {
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                 bat "mvn -f Day1-BankApp/pom.xml -Dmaven.test.failure.ignore=true clean package"
+                 bat "mvn -f Day1-Bankapp/pom.xml -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
@@ -24,13 +24,13 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'Day1-BankApp/target/*.jar'
+                    archiveArtifacts 'Day1-Bankapp/target/*.jar'
                 }
             }
         }
          stage('test'){
             steps{
-                bat "mvn -f Day1-BankApp/pom.xml test"
+                bat "mvn -f Day1-Bankapp/pom.xml test"
             }
         }
         stage('acceptance'){
